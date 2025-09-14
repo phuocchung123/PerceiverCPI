@@ -199,7 +199,7 @@ dependencies:
     - tensorflow-io-gcs-filesystem==0.22.0
     - termcolor==1.1.0
     - tifffile==2021.11.2
-    - torch==1.7.1+cu101
+    - torch==1.7.1
     - typed-argument-parser==1.7.1
     - typing-inspect==0.7.1
     - urllib3==1.26.7
