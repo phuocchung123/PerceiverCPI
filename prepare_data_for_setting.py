@@ -11,9 +11,9 @@ import numpy as np
 def new_compound():
     index = 0
     for i in range(5):
-        input_file = r'C:\Users\DMIS_Quang\Desktop\project\dataset\kiba_davis_deeppurpose\davis_data.csv'
-        train_file = r'C:\Users\DMIS_Quang\Desktop\project\dataset\kiba_davis_deeppurpose\%sdavis_train_newcomp.csv'%i
-        test_file = r'C:\Users\DMIS_Quang\Desktop\project\dataset\kiba_davis_deeppurpose\%sdavis_test_newcomp.csv'%i
+        input_file = 'toy_dataset/davis.csv'
+        train_file = 'toy_dataset/%sdavis_train_newcomp.csv'%i
+        test_file = 'toy_dataset/%sdavis_test_newcomp.csv'%i
         with open(input_file) as csv_file_a:
             with open(train_file, mode='w',newline='') as result1:
                 with open(test_file, mode='w',newline='') as result:
@@ -375,9 +375,9 @@ def newcompound_newproteingpcr():
 if __name__ == '__main__':
     
     # new_protein()
-    # new_compound()
+    new_compound()
     # newcompound_newprotein()
-    make_val_set()
+    # make_val_set()
     # check_data()
     # check_dup()
     # newcompound_newproteingpcr()
