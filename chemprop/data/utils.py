@@ -547,6 +547,7 @@ def validate_dataset_type(data: MoleculeDataset, dataset_type: str) -> None:
     :param dataset_type: The dataset type to check.
     """
     target_set = {target for targets in data.targets() for target in targets} - {None}
+    print('target_set: ',target_set)
     classification_target_set = {0, 1}
 
     if dataset_type == 'classification' and not (target_set <= classification_target_set):
