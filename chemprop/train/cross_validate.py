@@ -143,36 +143,36 @@ def cross_validate(args: TrainArgs,
                 info(f'\tOverall test {task_name} {metric} = '
                      f'{np.nanmean(scores[:, task_num]):.6f} +/- {np.nanstd(scores[:, task_num]):.6f}')
 
-    # Save scores
-    with open(os.path.join(save_dir, TEST_SCORES_FILE_NAME), 'w') as f:
-        writer = csv.writer(f)
+    # # Save scores
+    # with open(os.path.join(save_dir, TEST_SCORES_FILE_NAME), 'w') as f:
+    #     writer = csv.writer(f)
 
-        header = ['Task']
-        for metric in args.metrics:
-            header += [f'Mean {metric}', f'Standard deviation {metric}'] + \
-                      [f'Fold {i} {metric}' for i in range(args.num_folds)]
-        writer.writerow(header)
+    #     header = ['Task']
+    #     for metric in args.metrics:
+    #         header += [f'Mean {metric}', f'Standard deviation {metric}'] + \
+    #                   [f'Fold {i} {metric}' for i in range(args.num_folds)]
+    #     writer.writerow(header)
 
-        for task_num, task_name in enumerate(args.task_names):
-            row = [task_name]
-            for metric, scores in all_scores.items():
-                task_scores = scores[:, task_num]
-                mean, std = np.nanmean(task_scores), np.nanstd(task_scores)
-                row += [mean, std] + task_scores.tolist()
-            writer.writerow(row)
-        writer.writerow(['Cindex', cimean_score, cistd_score])
+    #     for task_num, task_name in enumerate(args.task_names):
+    #         row = [task_name]
+    #         for metric, scores in all_scores.items():
+    #             task_scores = scores[:, task_num]
+    #             mean, std = np.nanmean(task_scores), np.nanstd(task_scores)
+    #             row += [mean, std] + task_scores.tolist()
+    #         writer.writerow(row)
+    #     writer.writerow(['Cindex', cimean_score, cistd_score])
 
-    # Determine mean and std score of main metric
-    avg_scores = np.nanmean(all_scores[args.metric], axis=1)
-    mean_score, std_score = np.nanmean(avg_scores), np.nanstd(avg_scores)
+    # # Determine mean and std score of main metric
+    # avg_scores = np.nanmean(all_scores[args.metric], axis=1)
+    # mean_score, std_score = np.nanmean(avg_scores), np.nanstd(avg_scores)
 
-    # Optionally merge and save test preds
-    if args.save_preds:
-        all_preds = pd.concat([pd.read_csv(os.path.join(save_dir, f'fold_{fold_num}', 'test_preds.csv'))
-                               for fold_num in range(args.num_folds)])
-        all_preds.to_csv(os.path.join(save_dir, 'test_preds.csv'), index=False)
+    # # Optionally merge and save test preds
+    # if args.save_preds:
+    #     all_preds = pd.concat([pd.read_csv(os.path.join(save_dir, f'fold_{fold_num}', 'test_preds.csv'))
+    #                            for fold_num in range(args.num_folds)])
+    #     all_preds.to_csv(os.path.join(save_dir, 'test_preds.csv'), index=False)
 
-    return mean_score, std_score
+    # return mean_score, std_score
 
 
 def chemprop_train() -> None:
