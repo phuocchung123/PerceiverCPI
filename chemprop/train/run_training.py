@@ -226,7 +226,7 @@ def run_training(args: TrainArgs,
 
 
         # # Learning rate schedulers
-        optimizer = Lamb(model.parameters(), lr=args.lamp_lr, weight_decay=0.01, betas=(.9, .999), adam= True)
+        optimizer = Lamb(model.parameters(), lr=0.0001, betas=(.9, .999), adam= True)
         scheduler = build_lr_scheduler(optimizer, args)
         # Run training
         best_score = float('inf') if args.minimize_score else -float('inf')
