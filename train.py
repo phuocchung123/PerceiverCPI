@@ -13,4 +13,5 @@ warnings.filterwarnings("ignore")
 
 if __name__ == '__main__':
     print('trial')
+    print('trial2')
     chemprop_train()
